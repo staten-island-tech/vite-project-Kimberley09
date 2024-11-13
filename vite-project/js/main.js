@@ -1,24 +1,44 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { animals } from "./animals.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const DOMSelectors = {
+  container: document.querySelector(".animals-container"),
+  originFilterButton: document.querySelector(".originFilter"),
+  allAnimals: document.querySelector(".allAnimals"),
+  longLifespanAnimals: document.querySelector(".longLifespanAnimals"),
+};
 
-setupCounter(document.querySelector('#counter'))
+function createCard(arr) {
+  DOMSelectors.container.innerHTML = "";
+  arr.forEach((a) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `
+      <img class="img" src="${a.img}">
+      <h1 class="name">${a.name}</h1>
+      <p class="origin">Origin: ${a.origin}</p>
+      <p class="lifespan">Lifespan: ${a.lifespan} years</p>
+    `;
+    DOMSelectors.container.appendChild(card);
+  });
+}
+
+createCard(animals);
+
+DOMSelectors.originFilterButton.addEventListener("click", function () {
+  let filteredAnimals = animals.filter((animal) => animal.origin.includes("Africa"));
+  createCard(filteredAnimals);
+});
+
+DOMSelectors.allAnimals.addEventListener("click", function () {
+  createCard(animals);
+});
+
+DOMSelectors.longLifespanAnimals.addEventListener("click", function () {
+  let filteredAnimals = animals.filter((animal) => animal.lifespan > 70);
+  createCard(filteredAnimals);
+});
+
+const colorSwapButton = document.querySelector(".colorSwap");
+colorSwapButton.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
