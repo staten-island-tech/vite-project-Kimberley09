@@ -42,3 +42,4 @@ const colorSwapButton = document.querySelector(".colorSwap");
 colorSwapButton.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
+
