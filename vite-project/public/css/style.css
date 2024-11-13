@@ -32,7 +32,7 @@ button:hover {
 .animals-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4x4 layout */
-  gap: 20px;
+  gap: 100px;
   max-width: 1600px; /* Adjusted width for wider layout */
   padding: 20px;
 }
