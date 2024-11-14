@@ -1,4 +1,4 @@
-import { animals } from "./animals.js";
+import {animals} from "./animals.js";
 
 const DOMSelectors = {
   container: document.querySelector(".animals-container"),
@@ -9,15 +9,15 @@ const DOMSelectors = {
 
 function createCard(arr) {
   DOMSelectors.container.innerHTML = "";
-  arr.forEach((a) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.innerHTML = `
+    arr.forEach((a) => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
       <img class="img" src="${a.img}">
       <h1 class="name">${a.name}</h1>
       <p class="origin">Origin: ${a.origin}</p>
       <p class="lifespan">Lifespan: ${a.lifespan} years</p>
-    `;
+      `;
     DOMSelectors.container.appendChild(card);
   });
 }
@@ -42,4 +42,3 @@ const colorSwapButton = document.querySelector(".colorSwap");
 colorSwapButton.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
-
